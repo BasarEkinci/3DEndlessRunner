@@ -105,6 +105,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5813086171088918920, guid: 28638bd84e9deb041bcf95e0618df7e4, type: 3}
+      propertyPath: moveSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6537598056773886316, guid: 28638bd84e9deb041bcf95e0618df7e4, type: 3}
       propertyPath: m_Name
       value: Floor1
