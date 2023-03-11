@@ -10,6 +10,8 @@ namespace EndlessRunner.Movements
     {
         private Rigidbody playerRb;
 
+        public bool CanJump => playerRb.velocity.y != 0f;
+
         public JumpWithRb(PlayerController playerController)
         {
             playerRb = playerController.GetComponent<Rigidbody>();
@@ -17,8 +19,8 @@ namespace EndlessRunner.Movements
 
         public void TickFixed(float jumpForce)
         {
-            if (playerRb.velocity.y != 0) return;
-                
+            if (CanJump) 
+                return;
             
             playerRb.velocity = Vector3.zero;
             playerRb.AddForce(Vector3.up * (Time.deltaTime * jumpForce));
