@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EndlessRunner.Abstracts.Inputs;
 using EndlessRunner.Inputs;
+using EndlessRunner.Managers;
 using EndlessRunner.Movements;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +22,7 @@ namespace EndlessRunner.Controllers
         private IInputReader input;
         private float horizontal;
         private bool isJump;
+        private bool isDead = false;
 
         public float MoveSpeed => moveSpeed;
         public float MoveBoundary => moveBoundary;
@@ -34,6 +36,8 @@ namespace EndlessRunner.Controllers
 
         private void Update()
         {
+            if(isDead) return;
+            
             horizontal = input.Horizontal;
             if (input.IsJump)
             {
@@ -50,6 +54,16 @@ namespace EndlessRunner.Controllers
                 jump.TickFixed(jumpForce);
             }
             isJump = false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            EnemyController enemyController = other.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                isDead = true;
+                GameManager.Instance.StopGame();
+            }
         }
     }
 }
