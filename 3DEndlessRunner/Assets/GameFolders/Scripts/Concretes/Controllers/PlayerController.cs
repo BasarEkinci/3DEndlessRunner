@@ -12,6 +12,7 @@ namespace EndlessRunner.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private float moveBoundary = 4.5f;
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float jumpForce = 3000f;
 
@@ -20,6 +21,9 @@ namespace EndlessRunner.Controllers
         private IInputReader input;
         private float horizontal;
         private bool isJump;
+
+        public float MoveSpeed => moveSpeed;
+        public float MoveBoundary => moveBoundary;
         
         private void Awake()
         {
@@ -39,7 +43,7 @@ namespace EndlessRunner.Controllers
 
         private void FixedUpdate()
         {
-            horizontelMovement.TickFixed(horizontal,moveSpeed);
+            horizontelMovement.TickFixed(horizontal);
 
             if (isJump)
             {
