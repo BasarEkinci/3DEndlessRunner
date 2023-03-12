@@ -7,7 +7,7 @@ namespace EndlessRunner.UIs
 {
     public class EnemyManger : SingeltonMonoBehaviorObject<EnemyManger>
     {
-        [SerializeField] private EnemyController enemyPrefab;
+        [SerializeField] private EnemyController[] enemyPrefabs;
 
         private Queue<EnemyController> enemies = new Queue<EnemyController>();
 
@@ -25,9 +25,9 @@ namespace EndlessRunner.UIs
         {
             for (int i = 0; i < 10; i++)
             {
-                EnemyController newEnemy = Instantiate(enemyPrefab);
+                EnemyController newEnemy = Instantiate(enemyPrefabs[Random.Range(0,enemyPrefabs.Length)]);
                 newEnemy.gameObject.SetActive(false);
-                ((Component)newEnemy).transform.parent = this.transform;
+                newEnemy.transform.parent = this.transform;
                 enemies.Enqueue(newEnemy);
             }
         }
@@ -35,7 +35,7 @@ namespace EndlessRunner.UIs
         public void SetPool(EnemyController enemyController)
         {
             enemyController.gameObject.SetActive(false);
-            ((Component)enemyController).transform.parent = this.transform;
+            enemyController.transform.parent = this.transform;
             enemies.Enqueue(enemyController);
         }
 
