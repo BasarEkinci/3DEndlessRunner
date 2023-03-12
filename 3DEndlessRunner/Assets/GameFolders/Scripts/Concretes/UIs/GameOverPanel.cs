@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using EndlessRunner.Managers;
 using UnityEngine;
 
+
 namespace EndlessRunner.UIs
 {
-    public class MenuPanel : MonoBehaviour
+    public class GameOverPanel : MonoBehaviour
     {
-        public void StartButton()
+        public void TryAgainButton()
         {
             GameManager.Instance.LoadScene("Game");
         }
 
-        public void ExitButton()
+        public void ReturnMainMenuButton()
         {
-            GameManager.Instance.ExitGame();
+            GameManager.Instance.LoadScene("Menu");
         }
-
-
     }
+
 }
 
