@@ -1,24 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using EndlessRunner.Abstracts.Controllers;
 using EndlessRunner.Abstracts.Inputs;
+using EndlessRunner.Abstracts.Movements;
 using EndlessRunner.Inputs;
 using EndlessRunner.Managers;
 using EndlessRunner.Movements;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
+
 
 namespace EndlessRunner.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour,IEntityController
     {
         [SerializeField] private float moveBoundary = 4.5f;
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float jumpForce = 3000f;
-
-        private HorizontalMovement horizontelMovement;
-        private JumpWithRb jump;
+        
+        public Transform Transform { get; set; }
+        private IMover mover;
+        private IJump jump;
         private IInputReader input;
         private float horizontal;
         private bool isJump;
@@ -29,7 +29,7 @@ namespace EndlessRunner.Controllers
         
         private void Awake()
         {
-            horizontelMovement = new HorizontalMovement(this);
+            mover = new HorizontalMovement(this);
             jump = new JumpWithRb(this);
             input = new InputReader(GetComponent<PlayerInput>());
         }
@@ -47,24 +47,26 @@ namespace EndlessRunner.Controllers
 
         private void FixedUpdate()
         {
-            horizontelMovement.TickFixed(horizontal);
+            mover.FixedTick(horizontal);
 
             if (isJump)
             {
-                jump.TickFixed(jumpForce);
+                jump.FixedTick(jumpForce);
             }
             isJump = false;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            EnemyController enemyController = other.GetComponent<EnemyController>();
-            if (enemyController != null)
+            IEntityController entityController = other.GetComponent<IEntityController>();
+            if (entityController != null)
             {
                 isDead = true;
                 GameManager.Instance.StopGame();
             }
         }
+
+
     }
 }
 

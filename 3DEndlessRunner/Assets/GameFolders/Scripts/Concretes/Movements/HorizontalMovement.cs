@@ -1,32 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using EndlessRunner.Abstracts.Controllers;
+using EndlessRunner.Abstracts.Movements;
 using EndlessRunner.Controllers;
 using UnityEngine;
 
 namespace EndlessRunner.Movements
 {
-    public class HorizontalMovement
+    public class HorizontalMovement : IMover
     {
-        private PlayerController playerController;
-        private float moveSpeed;
-        private float moveBoundary;
+        IEntityController playerController;
+        float moveSpeed;
+        float moveBoundary;
 
-        public HorizontalMovement(PlayerController playerController)
+        public HorizontalMovement(IEntityController entityController)
         {
-            this.playerController = playerController;
-            moveSpeed = playerController.MoveSpeed;
-            moveBoundary = playerController.MoveBoundary;
+            playerController = entityController;
+            //moveSpeed = entityController.MoveSpeed;
+            //moveBoundary = entityController.MoveBoundary;
         }
 
-        public void TickFixed(float horizontal)
+        public void FixedTick(float horizontal)
         {
             if (horizontal == 0)
                 return;
             
-            playerController.transform.Translate(Vector3.right * (horizontal * Time.deltaTime * moveSpeed));
+            playerController.Transform.Translate(Vector3.right * (horizontal * Time.deltaTime * moveSpeed));
 
-            float xBoundary = Mathf.Clamp(playerController.transform.position.x,-moveBoundary,moveBoundary);
-            playerController.transform.position = new Vector3(xBoundary, playerController.transform.position.y, 0);
+            float xBoundary = Mathf.Clamp(playerController.Transform.position.x,-moveBoundary,moveBoundary);
+            playerController.Transform.position = new Vector3(xBoundary, playerController.Transform.position.y, 0);
         }
     }
 }

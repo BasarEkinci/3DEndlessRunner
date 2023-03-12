@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EndlessRunner.Abstracts.Controllers;
 using EndlessRunner.Movements;
 using EndlessRunner.UIs;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.PlayerLoop;
 
 namespace EndlessRunner.Controllers
 {
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : MonoBehaviour, IEntityController
     {
         private VerticalMovement verticalMovement;
         [SerializeField] private float moveSpeed = 10f;
@@ -16,6 +17,7 @@ namespace EndlessRunner.Controllers
 
         private float currentLifeTime = 0f;
         public float MoveSpeed => moveSpeed;
+        public Transform Transform { get; }
         
         private void Awake()
         {
@@ -41,6 +43,8 @@ namespace EndlessRunner.Controllers
         {
             EnemyManger.Instance.SetPool(this);  
         }
+
+
     }
 }
 
