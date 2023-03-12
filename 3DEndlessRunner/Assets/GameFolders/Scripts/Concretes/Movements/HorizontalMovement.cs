@@ -16,8 +16,8 @@ namespace EndlessRunner.Movements
         public HorizontalMovement(IEntityController entityController)
         {
             playerController = entityController;
-            //moveSpeed = entityController.MoveSpeed;
-            //moveBoundary = entityController.MoveBoundary;
+            moveSpeed = entityController.MoveSpeed;
+            moveBoundary = entityController.MoveBoundary;
         }
 
         public void FixedTick(float horizontal)

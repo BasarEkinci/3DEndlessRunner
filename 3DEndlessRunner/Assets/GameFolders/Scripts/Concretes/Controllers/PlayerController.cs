@@ -10,12 +10,9 @@ using UnityEngine.InputSystem;
 
 namespace EndlessRunner.Controllers
 {
-    public class PlayerController : MonoBehaviour,IEntityController
+    public class PlayerController : MyCharacterController,IEntityController
     {
-        [SerializeField] private float moveBoundary = 4.5f;
-        [SerializeField] private float moveSpeed = 10f;
-        [SerializeField] private float jumpForce = 3000f;
-        
+        private float jumpForce = 3000f;
         public Transform Transform { get; set; }
         private IMover mover;
         private IJump jump;
@@ -23,10 +20,6 @@ namespace EndlessRunner.Controllers
         private float horizontal;
         private bool isJump;
         private bool isDead = false;
-
-        public float MoveSpeed => moveSpeed;
-        public float MoveBoundary => moveBoundary;
-        
         private void Awake()
         {
             mover = new HorizontalMovement(this);
@@ -65,8 +58,6 @@ namespace EndlessRunner.Controllers
                 GameManager.Instance.StopGame();
             }
         }
-
-
     }
 }
 

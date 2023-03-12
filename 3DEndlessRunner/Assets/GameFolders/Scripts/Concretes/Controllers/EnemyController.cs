@@ -9,14 +9,16 @@ using UnityEngine.PlayerLoop;
 
 namespace EndlessRunner.Controllers
 {
-    public class EnemyController : MonoBehaviour, IEntityController
+    public class EnemyController : MyCharacterController,IEntityController
     {
-        private VerticalMovement verticalMovement;
+        [SerializeField] private float moveBoundary = 4.5f;
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float lifeTime = 10f;
-
+        
+        private VerticalMovement verticalMovement;
         private float currentLifeTime = 0f;
         public float MoveSpeed => moveSpeed;
+        public float MoveBoundary => moveBoundary;
         public Transform Transform { get; }
         
         private void Awake()
@@ -43,8 +45,6 @@ namespace EndlessRunner.Controllers
         {
             EnemyManger.Instance.SetPool(this);  
         }
-
-
     }
 }
 
