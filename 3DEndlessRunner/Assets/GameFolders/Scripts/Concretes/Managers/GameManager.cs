@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using EndlessRunner.Abstracts.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +7,8 @@ namespace EndlessRunner.Managers
 {
     public class GameManager : SingeltonMonoBehaviorObject<GameManager>
     {
+        public event System.Action OnGameStop;
+        
         private void Awake()
         {
             SingeltonThisObject(this);
@@ -17,6 +17,7 @@ namespace EndlessRunner.Managers
         public void StopGame()
         {
             Time.timeScale = 0f;
+            OnGameStop?.Invoke();
         }
         
         public void LoadScene(string sceneName)
@@ -26,8 +27,8 @@ namespace EndlessRunner.Managers
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
-            Time.timeScale = 1f;
             yield return SceneManager.LoadSceneAsync(sceneName);
+            Time.timeScale = 1f;
         }
 
         public void ExitGame()
