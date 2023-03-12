@@ -27,7 +27,7 @@ namespace EndlessRunner.UIs
             {
                 EnemyController newEnemy = Instantiate(enemyPrefab);
                 newEnemy.gameObject.SetActive(false);
-                newEnemy.transform.parent = this.transform;
+                ((Component)newEnemy).transform.parent = this.transform;
                 enemies.Enqueue(newEnemy);
             }
         }
@@ -35,7 +35,7 @@ namespace EndlessRunner.UIs
         public void SetPool(EnemyController enemyController)
         {
             enemyController.gameObject.SetActive(false);
-            enemyController.transform.parent = this.transform;
+            ((Component)enemyController).transform.parent = this.transform;
             enemies.Enqueue(enemyController);
         }
 

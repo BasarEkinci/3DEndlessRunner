@@ -12,14 +12,15 @@ namespace EndlessRunner.Controllers
 {
     public class PlayerController : MyCharacterController,IEntityController
     {
-        private float jumpForce = 3000f;
-        public Transform Transform { get; set; }
+        private float jumpForce = 1500f;
         private IMover mover;
         private IJump jump;
         private IInputReader input;
         private float horizontal;
         private bool isJump;
         private bool isDead = false;
+        
+        
         private void Awake()
         {
             mover = new HorizontalMovement(this);
@@ -46,6 +47,7 @@ namespace EndlessRunner.Controllers
             {
                 jump.FixedTick(jumpForce);
             }
+            
             isJump = false;
         }
 

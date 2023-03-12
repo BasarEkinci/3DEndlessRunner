@@ -20,6 +20,7 @@ namespace EndlessRunner.Inputs
             
             playerInput.currentActionMap.actions[0].performed += OnHorizontalMovement; 
             playerInput.currentActionMap.actions[1].started += OnJump;
+            playerInput.currentActionMap.actions[1].performed += OnJump;
             playerInput.currentActionMap.actions[1].canceled += OnJump;
         }
 

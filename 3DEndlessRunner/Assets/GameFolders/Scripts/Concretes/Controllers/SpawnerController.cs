@@ -30,8 +30,8 @@ namespace EndlessRunner.Controllers
         void Spawn()
         {
             EnemyController newEnemy = EnemyManger.Instance.GetPool();
-            newEnemy.transform.parent = this.transform;
-            newEnemy.transform.position = this.transform.position;
+            ((Component)newEnemy).transform.parent = this.transform;
+            ((Component)newEnemy).transform.position = this.transform.position;
             newEnemy.gameObject.SetActive(true);
             
             currentSpawnTime = 0;
