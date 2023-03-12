@@ -1,3 +1,4 @@
+using EndlessRunner.UIs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -5,7 +6,7 @@ namespace EndlessRunner.Controllers
 {
     public class SpawnerController : MonoBehaviour
     {
-        [SerializeField] private EnemyController enemyPrefab;
+
         
         [Range(0.1f,5f)] [SerializeField] private float min = 0.1f;
         [Range(6f,15f)] [SerializeField] private float max = 15f;
@@ -28,8 +29,10 @@ namespace EndlessRunner.Controllers
 
         void Spawn()
         {
-            EnemyController newEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+            EnemyController newEnemy = EnemyManger.Instance.GetPool();
             newEnemy.transform.parent = this.transform;
+            newEnemy.transform.position = this.transform.position;
+            newEnemy.gameObject.SetActive(true);
             
             currentSpawnTime = 0;
             RandomTimer();

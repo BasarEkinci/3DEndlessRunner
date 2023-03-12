@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EndlessRunner.Movements;
+using EndlessRunner.UIs;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -38,7 +39,7 @@ namespace EndlessRunner.Controllers
         
         private void KillYourSelf()
         {
-            Destroy(this.gameObject);   
+            EnemyManger.Instance.SetPool(this);  
         }
     }
 }
