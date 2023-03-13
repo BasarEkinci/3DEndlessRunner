@@ -379,6 +379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[EnemyManager]'
       objectReference: {fileID: 0}
+    - target: {fileID: 1168168396728252731, guid: b41ec897ff31b004da67854063996d08, type: 3}
+      propertyPath: addDelayTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8587203946523236571, guid: b41ec897ff31b004da67854063996d08, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -549,6 +553,10 @@ PrefabInstance:
     - target: {fileID: 571101962155912746, guid: b8db5454a6f8c2c4bbc84b9e90a92f4b, type: 3}
       propertyPath: m_Name
       value: Spawners
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501843833865364652, guid: b8db5454a6f8c2c4bbc84b9e90a92f4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7664652965855518381, guid: b8db5454a6f8c2c4bbc84b9e90a92f4b, type: 3}
       propertyPath: m_RootOrder

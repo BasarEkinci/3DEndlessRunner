@@ -91,6 +91,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 504485687491060842, guid: 6023a79b9a6885d40a8129d7becfd081, type: 3}
+      propertyPath: enemyEnum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 504485687491060842, guid: 6023a79b9a6885d40a8129d7becfd081, type: 3}
       propertyPath: moveSpeed
       value: 15
       objectReference: {fileID: 0}
