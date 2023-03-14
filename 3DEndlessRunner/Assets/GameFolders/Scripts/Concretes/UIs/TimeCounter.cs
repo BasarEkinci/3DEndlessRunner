@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +7,7 @@ namespace EndlessRunner.UIs
     {
         private TMP_Text text;
         private float currentTime;
+        
         private void Awake()
         {
             text = GetComponent<TMP_Text>();

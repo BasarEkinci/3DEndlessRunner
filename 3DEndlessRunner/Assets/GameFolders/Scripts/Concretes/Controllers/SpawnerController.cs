@@ -1,5 +1,7 @@
 using EndlessRunner.Enums;
+using EndlessRunner.Managers;
 using EndlessRunner.UIs;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,8 +9,8 @@ namespace EndlessRunner.Controllers
 {
     public class SpawnerController : MonoBehaviour
     {
-        [Range(0.1f,5f)] [SerializeField] private float min = 0.1f;
-        [Range(6f,15f)] [SerializeField] private float max = 15f;
+        private float min = 1f;
+        private float max = 15f;
         
         private int index;
         private float maxAddEnemyTime;
@@ -24,6 +26,9 @@ namespace EndlessRunner.Controllers
         private float currentSpawnTime;
         private void Update()
         {
+            
+            SetDifficulty();
+            
             currentSpawnTime += Time.deltaTime;
 
             if (currentSpawnTime > maxSpawnTime)
@@ -38,6 +43,8 @@ namespace EndlessRunner.Controllers
                 maxAddEnemyTime = Time.time + EnemyManger.Instance.AddDelayTime;
                 IncreaseIndex();
             }
+            Debug.Log("Max Spawn Time: " + max);
+            Debug.Log("Min Spawn Time: " + min);
         }
 
         void IncreaseIndex()
@@ -63,6 +70,26 @@ namespace EndlessRunner.Controllers
         private void RandomTimer()
         {
             maxSpawnTime = Random.Range(min, max);
+        }
+
+        void SetDifficulty()
+        {
+            if (GameManager.Instance.CurrentTime <= 10f)
+            {
+                max = 15;
+            }
+            else if (GameManager.Instance.CurrentTime <= 20f)
+            {
+                max = 8;
+            }
+            else if (GameManager.Instance.CurrentTime <= 30f)
+            {
+                max = 3;
+            }
+            else
+            {
+                max = 1.5f;
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EndlessRunner.Abstracts.Utilities;
 using UnityEngine;
@@ -7,11 +8,21 @@ namespace EndlessRunner.Managers
 {
     public class GameManager : SingeltonMonoBehaviorObject<GameManager>
     {
+
+        private float currentTime;
+        private float moveSpeed;
+
+        public float CurrentTime => currentTime;
         public event System.Action OnGameStop;
         
         private void Awake()
         {
             SingeltonThisObject(this);
+        }
+
+        private void Update()
+        {
+            currentTime += Time.deltaTime;
         }
 
         public void StopGame()

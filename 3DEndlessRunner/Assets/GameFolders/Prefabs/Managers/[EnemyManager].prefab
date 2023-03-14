@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba775842e4885645940f8c6ff93c704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addDelayTime: 10
   enemyPrefabs:
   - {fileID: 2425887745071678285, guid: 453e0567db6527c44ae8cdd830506bed, type: 3}
   - {fileID: 7750270783475815696, guid: 26e12b9dfe933aa48bdc3ab0db945219, type: 3}

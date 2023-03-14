@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using EndlessRunner.Managers;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace EndlessRunner.Controllers
 {
     public class FloorController : MonoBehaviour
     {
         private Material material;
-        [SerializeField] private float moveSpeed;
-
+        private float timer;
+        private float moveSpeed = 0.6f;
         private void Awake()
         {
             material = GetComponentInChildren<MeshRenderer>().material;
@@ -20,6 +17,7 @@ namespace EndlessRunner.Controllers
         {
             material.mainTextureOffset += Vector2.down * (Time.deltaTime * moveSpeed);
         }
+        
     }
 }
 

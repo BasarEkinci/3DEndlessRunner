@@ -16,8 +16,6 @@ namespace EndlessRunner.UIs
         {
             GameManager.Instance.ExitGame();
         }
-
-
     }
 }
 

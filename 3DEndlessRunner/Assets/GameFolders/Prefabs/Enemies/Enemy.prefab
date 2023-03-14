@@ -58,5 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd02325c81417214894140179a9bc513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  lifeTime: 10
+  moveBoundary: 4.5
+  moveSpeed: 15
+  lifeTime: 5
+  enemyEnum: 0
