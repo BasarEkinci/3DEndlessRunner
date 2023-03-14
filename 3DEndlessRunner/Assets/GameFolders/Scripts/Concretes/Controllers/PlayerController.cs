@@ -1,9 +1,11 @@
+using System;
 using EndlessRunner.Abstracts.Controllers;
 using EndlessRunner.Abstracts.Inputs;
 using EndlessRunner.Abstracts.Movements;
 using EndlessRunner.Inputs;
 using EndlessRunner.Managers;
 using EndlessRunner.Movements;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,51 +14,54 @@ namespace EndlessRunner.Controllers
 {
     public class PlayerController : MyCharacterController,IEntityController
     {
-        private float jumpForce = 1500f;
-        private IMover mover;
-        private IJump jump;
-        private IInputReader input;
-        private float horizontal;
-        private bool isJump;
-        private bool isDead = false;
-        
-        
+        [SerializeField] private float jumpForce = 1500f;
+
+        IMover _mover;
+        private IJump _jump;
+        IInputReader _input;
+        float _horizontal;
+        bool _isJump;
+        bool _isDead = false;
+
         private void Awake()
         {
-            mover = new HorizontalMovement(this);
-            jump = new JumpWithRb(this);
-            input = new InputReader(GetComponent<PlayerInput>());
+            _mover = new HorizontalMovement(this);
+            _input = new InputReader(GetComponent<PlayerInput>());
+            _jump = new JumpWithRb(this);
         }
 
-        private void Update()
+
+        void Update()
         {
-            if(isDead) return;
+            if (_isDead) return;
             
-            horizontal = input.Horizontal;
-            if (input.IsJump)
+            _horizontal = _input.Horizontal;
+            
+            if (_input.IsJump)
             {
-                isJump = true;
+                _isJump = true;
             }
+
         }
 
         private void FixedUpdate()
         {
-            mover.FixedTick(horizontal);
+            _mover.FixedTick(_horizontal);
 
-            if (isJump)
+            if (_isJump)
             {
-                jump.FixedTick(jumpForce);
+                _jump.FixedTick(jumpForce);
             }
-            
-            isJump = false;
+            _isJump = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             IEntityController entityController = other.GetComponent<IEntityController>();
+
             if (entityController != null)
             {
-                isDead = true;
+                _isDead = true;
                 GameManager.Instance.StopGame();
             }
         }

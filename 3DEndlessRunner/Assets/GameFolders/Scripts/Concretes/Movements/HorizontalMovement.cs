@@ -9,7 +9,7 @@ namespace EndlessRunner.Movements
     {
         IEntityController entityController;
 
-        private float moveSpeed;
+        private float moveSpeed = 10f;
         
         public HorizontalMovement(IEntityController entityController)
         {
